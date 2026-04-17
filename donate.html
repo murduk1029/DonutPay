@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DonutPay — Сторінка донату</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="donate">
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="blob blob-1" aria-hidden="true"></div>
+    <div class="donut deco-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html">DonutPay</a>
+        <nav class="topbar-actions">
+          <button id="languageToggleBtn" class="btn btn-ghost" type="button">UA</button>
+          <a class="btn btn-ghost" href="index.html">Головна</a>
+          <a class="btn btn-secondary" href="dashboard.html">Мій кабінет</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-content">
+      <section class="glass section-block">
+        <p class="badge">Сторінка донату</p>
+        <h1 class="page-title">
+          Підтримати: <span id="recipientNickname">невідомий профіль</span>
+        </h1>
+        <p id="recipientInfo" class="muted">Завантаження профілю...</p>
+        <p id="recipientPinnedMessage" class="pinned-message hidden"></p>
+        <div class="social-row hidden" id="recipientSocialRow">
+          <a id="recipientTelegramLink" class="btn btn-ghost" target="_blank" rel="noopener">
+            Telegram стрімера
+          </a>
+        </div>
+      </section>
+
+      <section class="grid two-col">
+        <article class="glass section-block">
+          <h3>Надіслати донат</h3>
+          <p id="donateAuthHint" class="muted"></p>
+          <form id="donationForm" class="form">
+            <label>
+              Ім'я
+              <input id="donorName" type="text" placeholder="Ваш нік або ім'я" required />
+            </label>
+            <label>
+              Повідомлення
+              <textarea
+                id="donationMessage"
+                rows="4"
+                placeholder="Напишіть тепле побажання"
+                required
+              ></textarea>
+            </label>
+            <label>
+              Сума (₴)
+              <input id="donationAmount" type="number" min="1" step="1" placeholder="100" required />
+            </label>
+            <button id="donationSubmitBtn" class="btn btn-gradient btn-xl pulse-btn" type="submit">
+              Надіслати донат
+            </button>
+          </form>
+          <p id="donationStatus" class="status-text"></p>
+        </article>
+
+        <article class="glass section-block">
+          <h3>Останні донати цього профілю</h3>
+          <ul id="recipientDonationsList" class="donations-list"></ul>
+          <p id="recipientEmptyState" class="muted">Поки що донатів немає.</p>
+        </article>
+      </section>
+    </main>
+
+    <div id="successPopup" class="popup hidden">
+      <div class="popup-card glass">
+        <h4>Донат успішно надіслано!</h4>
+        <p>Ваш платіж збережено в профілі отримувача.</p>
+      </div>
+    </div>
+
+    <div id="fullscreenAlert" class="fullscreen-alert hidden" aria-live="assertive">
+      <div class="fullscreen-alert-card">
+        <img id="alertGif" class="fullscreen-alert-gif" alt="Анімація донату" />
+        <h2>Новий донат!</h2>
+        <p><strong id="alertDonor">—</strong> надіслав(ла) <strong id="alertAmount">0 ₴</strong></p>
+        <p id="alertMessage">—</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
